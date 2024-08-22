@@ -1,9 +1,9 @@
-import NxWelcome from './nx-welcome';
+import { CharactersList } from '../pages/CharactersList';
 
 export function App() {
   return (
     <div>
-      <NxWelcome title="org" />
+      <CharactersList />
     </div>
   );
 }

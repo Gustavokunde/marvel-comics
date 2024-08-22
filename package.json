@@ -9,8 +9,12 @@
   },
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^2.2.7",
+    "crypto-js": "^4.2.0",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-redux": "^9.1.2",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@nx/cypress": "19.6.2",
@@ -26,6 +30,7 @@
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@testing-library/react": "15.0.6",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "18.16.9",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
