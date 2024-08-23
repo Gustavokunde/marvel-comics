@@ -16,10 +16,9 @@ const CharactersList = () => {
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
   const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
 
-  const { loading, data, pagination, error } = useSelector(
+  const { loading, data, pagination } = useSelector(
     (state: RootState) => state.characters
   );
-
   const { Modal, openModal } = useModal({
     internalContent: <CharacterDetailsModal character={selectedCharacter} />,
   });
@@ -29,8 +28,8 @@ const CharactersList = () => {
     disabled: loading,
   });
 
-  const fetchData = useCallback(() => {
-    if (!loading)
+  const fetchData = () => {
+    if (!loading) {
       dispatch(
         fetchCharactersData({
           filterByName: filterBy?.name,
@@ -38,11 +37,12 @@ const CharactersList = () => {
           page: pageNumber,
         })
       );
-  }, [pageNumber, filterBy]);
+    }
+  };
 
   useEffect(() => {
     fetchData();
-  }, [fetchData, pageNumber]);
+  }, [pageNumber]);
 
   const onChangeFilter = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +65,7 @@ const CharactersList = () => {
       variant: 'outlined' as TextFieldVariants,
       name: name,
       onChange: onChangeFilter,
+      inputProps: { 'data-testid': 'filterby' + name },
       InputProps: {
         endAdornment: (
           <InputAdornment position="end">
@@ -89,6 +90,7 @@ const CharactersList = () => {
             .fill(0)
             .map((item, index) => (
               <Skeleton
+                data-testid="skeleton"
                 key={index}
                 variant="rectangular"
                 className="rounded"
@@ -107,14 +109,16 @@ const CharactersList = () => {
               bg-dark-green text-white
               ease-in duration-300 hover:scale-105"
             >
-              <span>{character.name}</span>
+              <span data-testid="character-name">{character.name}</span>
               <img
+                data-testid="character-image"
                 className="max-w-full max-h-52 object-contain"
                 src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
                 alt={character.name + 'thumbnail'}
               />
               <Button
                 variant="contained"
+                data-testid="see-details"
                 onClick={() => onCharacterDetailsClick(character)}
               >
                 See details

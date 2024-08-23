@@ -27,9 +27,9 @@ const CharacterDetails = ({ character }: Props) => {
         ) : null
       )}
 
-      {!character?.comics.returned &&
-        !character?.series.returned &&
-        !character?.stories.returned && <p> There is no work to show</p>}
+      {!character?.comics?.returned &&
+        !character?.series?.returned &&
+        !character?.stories?.returned && <p> There is no work to show</p>}
     </div>
   );
 };

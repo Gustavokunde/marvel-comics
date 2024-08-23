@@ -15,6 +15,7 @@ const useModal = ({ internalContent }: Props) => {
     return (
       <Modal open={isOpen} onClose={closeModal}>
         <div
+          data-testid="modal-content"
           className="bg-white rounded min-w-80 
         absolute top-1/2 left-1/2 shadow-inner -translate-x-1/2 -translate-y-1/2 "
         >
