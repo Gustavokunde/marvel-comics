@@ -19,7 +19,11 @@ const useModal = ({ internalContent }: Props) => {
         absolute top-1/2 left-1/2 shadow-inner -translate-x-1/2 -translate-y-1/2 "
         >
           <section className="flex justify-end pr-2 pt-2">
-            <CloseIcon role="button" onClick={closeModal} />
+            <CloseIcon
+              role="button"
+              data-testid="close-icon"
+              onClick={closeModal}
+            />
           </section>
           {internalContent}
         </div>

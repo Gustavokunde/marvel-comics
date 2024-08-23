@@ -14,13 +14,13 @@ const CharacterDetails = ({ character }: Props) => {
       <p>{character?.description}</p>
       {worksToShow.map((work) =>
         character && character[work]?.items.length ? (
-          <figure>
+          <figure key={work}>
             <figcaption>
               <strong>{work}</strong>
             </figcaption>
             <ul>
               {character[work].items.map((item) => (
-                <li>{item.name}</li>
+                <li key={item.name}>{item.name}</li>
               ))}
             </ul>
           </figure>

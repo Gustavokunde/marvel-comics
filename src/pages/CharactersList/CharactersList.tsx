@@ -20,7 +20,7 @@ const CharactersList = () => {
     (state: RootState) => state.characters
   );
 
-  const { Modal, openModal, closeModal } = useModal({
+  const { Modal, openModal } = useModal({
     internalContent: <CharacterDetailsModal character={selectedCharacter} />,
   });
 
