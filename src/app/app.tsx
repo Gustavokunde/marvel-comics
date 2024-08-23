@@ -2,7 +2,7 @@ import { CharactersList } from '../pages/CharactersList';
 
 export function App() {
   return (
-    <div>
+    <div className="min-h-screen">
       <CharactersList />
     </div>
   );
