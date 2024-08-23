@@ -3,6 +3,7 @@ import { InputAdornment } from '@mui/material';
 import TextField, { TextFieldVariants } from '@mui/material/TextField';
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import usePagination from '../../hooks/paginations';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCharactersData } from '../../store/characters/thunks/fetchCharacters';
 
@@ -10,23 +11,29 @@ const CharactersList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
 
-  const { loading, data, error } = useSelector(
+  const { loading, data, pagination, error } = useSelector(
     (state: RootState) => state.characters
   );
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  const { Pagination, pageNumber } = usePagination({
+    count: pagination.count,
+    disabled: loading,
+  });
 
-  const fetchData = () => {
+  const fetchData = useCallback(() => {
     if (!loading)
       return dispatch(
         fetchCharactersData({
           filterByName: filterBy?.name,
           filterByWork: filterBy?.work,
+          page: pageNumber,
         })
       );
-  };
+  }, [pageNumber]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData, pageNumber]);
 
   const onChangeFilter = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,28 +63,27 @@ const CharactersList = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-4">
-      <section className="flex gap-4">
+      <section className="flex flex-wrap gap-4">
         <TextField {...inputFilterProps('name')} />
         <TextField {...inputFilterProps('work')} />
       </section>
-      <div>
-        <div className="flex flex-wrap gap-4">
-          {data &&
-            data.map((character) => (
-              <div
-                key={character.id}
-                className="w-80 flex flex-col items-center justify-between rounded"
-              >
-                <button>See details</button>
-                <span>{character.name}</span>
-                <img
-                  src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
-                  alt={character.name + 'thumbnail'}
-                />
-              </div>
-            ))}
-        </div>
+      <div className="flex justify-center flex-wrap gap-4">
+        {data &&
+          data.map((character) => (
+            <div
+              key={character.id}
+              className="w-80 flex flex-col items-center justify-between rounded"
+            >
+              <span>{character.name}</span>
+              <img
+                src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
+                alt={character.name + 'thumbnail'}
+              />
+              <button>See details</button>
+            </div>
+          ))}
       </div>
+      <Pagination />
     </div>
   );
 };

@@ -1,15 +1,18 @@
 import api from './api';
 
-interface Params {
+export interface CharactersListDTO {
   filterByName?: string;
   filterByWork?: string;
+  page: number;
 }
-export const getCharactersList = async (params?: Params) => {
+
+const offset = 20;
+
+export const getCharactersList = async (params: CharactersListDTO) => {
   return await api
     .get('characters', {
       params: {
-        limit: 19,
-        offset: 20,
+        offset: offset * params?.page,
         name: params?.filterByName, // TODO not filtering as expected
         series: [params?.filterByWork],
         comics: [params?.filterByWork],
@@ -17,7 +20,8 @@ export const getCharactersList = async (params?: Params) => {
     })
     .then(
       (response) => {
-        return response.data.data.results;
+        const { data } = response.data;
+        return data;
       },
       (error) => {
         return error;

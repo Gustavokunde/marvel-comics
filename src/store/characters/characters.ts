@@ -6,12 +6,20 @@ export interface CharacterState {
   loading: boolean;
   data: Array<Character>;
   error: string | null;
+  pagination: {
+    total: number;
+    count: number;
+  };
 }
 
 const initialState: CharacterState = {
   loading: false,
   data: [],
   error: null,
+  pagination: {
+    total: 0,
+    count: 0,
+  },
 };
 
 const characterSlice = createSlice({
@@ -26,7 +34,9 @@ const characterSlice = createSlice({
       })
       .addCase(fetchCharactersData.fulfilled, (state, action) => {
         state.loading = false;
-        state.data = action.payload;
+        state.data = action.payload.results;
+        const { count, total } = action.payload;
+        state.pagination = { total, count };
       })
       .addCase(fetchCharactersData.rejected, (state, action) => {
         state.loading = false;

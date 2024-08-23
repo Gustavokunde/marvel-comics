@@ -1,13 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { getCharactersList } from '../../../services/characters';
-interface Params {
-  filterByName?: string;
-  filterByWork?: string;
-}
+import {
+  CharactersListDTO,
+  getCharactersList,
+} from '../../../services/characters';
 
 export const fetchCharactersData = createAsyncThunk(
   'characters/fetchCharactersData',
-  async (params?: Params) => {
+  async (params: CharactersListDTO) => {
     const results = await getCharactersList(params);
     return results;
   }
