@@ -79,11 +79,16 @@ const CharactersList = () => {
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8">
       <Modal />
-      <section className="flex flex-wrap gap-4">
+      <section className="flex flex-wrap justify-center gap-4">
         <TextField {...inputFilterProps('name')} />
         <TextField {...inputFilterProps('work')} />
       </section>
-      {loading && <p> We are working on bringing the characters for you...</p>}
+      {loading && (
+        <p className="text-center">
+          {' '}
+          We are working on bringing the characters for you...
+        </p>
+      )}
       <div className="flex justify-center w-full flex-wrap gap-4">
         {loading &&
           Array(3)
