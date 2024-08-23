@@ -39,6 +39,11 @@ const characterSlice = createSlice({
         state.pagination = { total, count };
       })
       .addCase(fetchCharactersData.rejected, (state, action) => {
+        if (action.error.code === 'ERR_NETWORK') {
+          state.error =
+            'There was a failure in your internet connection, please check it and try again.';
+          return;
+        }
         state.loading = false;
         state.error = action.error.message || null;
       });
