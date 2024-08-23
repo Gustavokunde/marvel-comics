@@ -13,7 +13,7 @@ export const getCharactersList = async (params: CharactersListDTO) => {
     .get('characters', {
       params: {
         offset: offset * params?.page,
-        name: params?.filterByName, // TODO not filtering as expected
+        name: params?.filterByName || null, // TODO not filtering as expected
         series: [params?.filterByWork],
         comics: [params?.filterByWork],
       },

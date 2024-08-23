@@ -20,4 +20,5 @@ export interface WorkList {
   available: number;
   collectionURI: string;
   items: Array<Work>;
+  returned: number;
 }
