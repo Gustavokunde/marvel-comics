@@ -7,7 +7,9 @@
     "build": "nx build",
     "test": "nx test",
     "test:e2e": "cypress open",
-    "deploy": "gh-pages -d dist/org"
+    "deploy": "gh-pages -d dist/org",
+    "cypress:run": "cypress run",
+    "prepush-checks": "npm run build && npm test && npm run cypress:run"
   },
   "private": true,
   "dependencies": {
@@ -61,6 +63,7 @@
     "eslint-plugin-react": "7.32.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "gh-pages": "^6.1.1",
+    "husky": "^9.1.5",
     "jsdom": "~22.1.0",
     "nx": "19.6.2",
     "postcss": "8.4.38",
