@@ -1,6 +1,7 @@
 import { ResponsiveCirclePacking } from '@nivo/circle-packing';
 import { useTranslation } from 'react-i18next';
 import { Character } from '../../interfaces/character';
+import { colors } from '../../utils/colors';
 
 const ComicsByCharacterChart = ({
   characters,
@@ -25,7 +26,7 @@ const ComicsByCharacterChart = ({
     "
     >
       <h2 className="mb-2">{t('chartTitle')}</h2>
-      <div className="h-72 w-72 max-h-screen max-w-screen">
+      <div className="h-72 w-[800px] max-h-screen max-w-screen">
         <ResponsiveCirclePacking
           data={dataChart}
           id="name"
@@ -33,8 +34,8 @@ const ComicsByCharacterChart = ({
           padding={4}
           enableLabels={true}
           labelsSkipRadius={10}
-          labelTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
-          colors={{ scheme: 'nivo' }}
+          labelTextColor={colors.lightGray}
+          colors={[colors.darkGreen, colors.lightGreen]}
           borderColor={{ from: 'color', modifiers: [['darker', 0.5]] }}
           animate={true}
         />

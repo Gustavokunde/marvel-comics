@@ -89,6 +89,7 @@ const Home = () => {
         <TextField {...inputFilterProps('Name')} />
         <TextField {...inputFilterProps('Work')} />
       </section>
+      <ComicsByCharacterChart characters={data} />
       {loading && <p className="text-center">{t('loading')}</p>}
       <CharactersList
         loading={loading}
@@ -96,7 +97,6 @@ const Home = () => {
         onActionClick={onCharacterDetailsClick}
       />
       <Pagination />
-      <ComicsByCharacterChart characters={data} />
     </div>
   );
 };
