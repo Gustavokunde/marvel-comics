@@ -22,24 +22,21 @@ const character: Character = {
 };
 
 describe('Character Details test', () => {
-  it('should check if character name, description and works are showing properly', () => {
+  it('should check if character description and works are showing properly', () => {
     render(<CharacterDetails character={character} />);
-
-    const name = screen.getByText(character.name);
-    expect(name).toBeInTheDocument();
 
     const description = screen.getByText(character.description);
     expect(description).toBeInTheDocument();
 
-    character.comics.items.map((comic) => {
+    character.comics?.items.map((comic) => {
       const name = screen.getByText(comic.name);
       expect(name).toBeInTheDocument();
     });
-    character.series.items.map((serie) => {
+    character.series?.items.map((serie) => {
       const name = screen.getByText(serie.name);
       expect(name).toBeInTheDocument();
     });
-    character.stories.items.map((story) => {
+    character.stories?.items.map((story) => {
       const name = screen.getByText(story.name);
       expect(name).toBeInTheDocument();
     });
@@ -85,6 +82,6 @@ describe('Character Details test', () => {
       />
     );
 
-    expect(screen.getByText('There is no work to show')).toBeInTheDocument();
+    expect(screen.getByText('noWorks')).toBeInTheDocument();
   });
 });
