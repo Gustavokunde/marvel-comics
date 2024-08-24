@@ -20,6 +20,7 @@ const CharactersList = ({ characters, loading, onActionClick }: Props) => {
           .map((item, index) => (
             <Skeleton
               data-testid="skeleton"
+              id={'skeleton' + index}
               key={index}
               variant="rectangular"
               className="rounded"
@@ -32,6 +33,7 @@ const CharactersList = ({ characters, loading, onActionClick }: Props) => {
         !loading &&
         characters.map((character) => (
           <div
+            id={character.id}
             key={character.id}
             className="w-80 h-80 p-4 rounded 
       flex flex-col items-center justify-between 
@@ -46,6 +48,7 @@ const CharactersList = ({ characters, loading, onActionClick }: Props) => {
               alt={character.name + 'thumbnail'}
             />
             <Button
+              id={'see-details' + character.name}
               variant="contained"
               data-testid="see-details"
               onClick={() => onActionClick(character)}

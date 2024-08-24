@@ -19,6 +19,7 @@ const usePagination = ({ count, disabled }: PaginationProps) => {
   const PaginationItem = () => {
     return (
       <Pagination
+        id="pagination"
         data-testid="pagination"
         count={count}
         page={pageNumber}
