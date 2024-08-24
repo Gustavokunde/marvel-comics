@@ -1,82 +1,80 @@
-# Org
+# Marvel Comics
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+## Descrição do Projeto
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+<p>O projeto <strong>Marvel Comics</strong> foi desenvolvido com <strong>React</strong> e <strong>TypeScript</strong>, utilizando <strong>Vite</strong> e <strong>Nx</strong> como ferramentas de desenvolvimento. Ele lista os personagens da <a href="https://developer.marvel.com" target="_blank">API da Marvel</a>, exibindo detalhes de cada personagem através de um modal. O projeto inclui paginação e suporte a várias tecnologias modernas, garantindo uma experiência de usuário fluida e eficiente.</p>
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/getting-started/tutorials/react-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+<p>Os personagens são listados com paginação na página inicial, e ao clicar em um personagem, um modal exibe detalhes adicionais sobre ele.</p>
 
-## Finish your CI setup
+<p align="center">
+ <a href="#status">Status</a> •
+ <a href="#objetivo">Objetivo</a> • 
+ <a href="#features">Features</a> • 
+ <a href="#melhorias">Melhorias</a> • 
+ <a href="#tecnologias">Tecnologias</a> • 
+ <a href="#pré-requisitos">Pré-requisitos</a> • 
+ <a href="#rodar-o-projeto">Rodar o Projeto</a> • 
+ <a href="#autor">Autor</a>
+</p>
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/1x4YZ9U8qH)
+## Status
 
+<h4>Em desenvolvimento... 🚀</h4>
 
-## Run tasks
+## Objetivo
 
-To run the dev server for your app, use:
+<p>Este projeto foi criado para demonstrar o uso de diversas tecnologias como Nx, Vite, e Redux, além de explorar o consumo de APIs externas, como a da Marvel, com uma arquitetura limpa e escalável.</p>
 
-```sh
-npx nx serve org
+### Features
+
+- [x] Lista de personagens com paginação
+- [x] Detalhamento de personagens em modal
+- [x] Arquitetura escalável com Nx
+- [x] Suporte a múltiplos idiomas com React i18n
+- [x] Testes unitários completos
+- [x] Integração com gráficos para visualização de dados
+
+### Melhorias
+
+- [ ] Melhorar a usabilidade do modal
+- [ ] Adicionar mais detalhes sobre cada personagem
+- [ ] Implementar testes end-to-end
+- [ ] Melhorar o layout responsivo para dispositivos móveis
+
+### Tecnologias
+
+- [Nx](https://nx.dev/)
+- [Vite](https://vitejs.dev/)
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [MUI](https://mui.com/)
+- [Redux](https://redux.js.org/)
+- [Redux Thunk](https://github.com/reduxjs/redux-thunk)
+- [React i18n](https://react.i18next.com/)
+- [Vitest](https://vitest.dev/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+
+### Pré-requisitos
+
+- [Git](https://git-scm.com)
+- [Node.js](https://nodejs.org/en/) 18 ou superior
+- [npm](https://www.npmjs.com/)
+
+### Rodar o Projeto
+
+```bash
+# Clone este repositório
+$ git clone https://github.com/gustavokunde/marvel-comics.git
+
+# Instale as dependências
+$ npm install
+
+# Inicie o projeto
+$ npm run start
 ```
 
-To create a production bundle:
+### Autor
 
-```sh
-npx nx build org
-```
-
-To see all available targets to run for a project, run:
-
-```sh
-npx nx show project org
-```
-        
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
-
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Add new projects
-
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
-
-Use the plugin's generator to create new projects.
-
-To generate a new application, use:
-
-```sh
-npx nx g @nx/react:app demo
-```
-
-To generate a new library, use:
-
-```sh
-npx nx g @nx/react:lib mylib
-```
-
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
-
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/getting-started/tutorials/react-standalone-tutorial?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+<img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/51379380?v=4" width="80px;" alt=""/> <br /> <sub><b>Gustavo Kunde</b></sub>
+[linkedin](https://www.linkedin.com/in/gustavokunde/)
