@@ -30,19 +30,14 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'  # or 'npm' if you use npm
+          cache: 'npm'  
 
       - name: Install dependencies
-        run: npm install  # or 'npm install'
-
-      - name: Build the project
-        run: npm run build  # or target specific apps/libs
+        run: npm install  
 
       - name: Run tests
         run: npm run test
-      - uses: nrwl/nx-set-shas@v4
 
-      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
-      # - run: npx nx-cloud record -- echo Hello World
-      # Nx Affected runs only tasks affected by the changes in this PR/commit. Learn more: https://nx.dev/ci/features/affected
-      - run: npx nx affected -t lint test build e2e-ci
+      - name: Build the project
+        run: npm run build  
+      

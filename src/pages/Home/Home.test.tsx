@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { Provider } from 'react-redux';
-import { CharactersListDTO } from 'src/services/characters';
+import { CharactersListDTO } from '../../services/characters';
 import store from '../../store';
 import * as fetchThunk from '../../store/characters/thunks/fetchCharacters';
 import CharactersList from './Home';
