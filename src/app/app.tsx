@@ -1,9 +1,19 @@
-import NxWelcome from './nx-welcome';
+import { Alert } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { LanguageSelector } from '../components/LanguageSelector';
+import { Home } from '../pages/Home';
+import { RootState } from '../store';
 
 export function App() {
+  const charactersError = useSelector(
+    (state: RootState) => state.characters.error
+  );
+
   return (
-    <div>
-      <NxWelcome title="org" />
+    <div className="min-h-screen bg-light-gray">
+      <LanguageSelector />
+      {charactersError && <Alert severity="error">{charactersError}</Alert>}
+      <Home />
     </div>
   );
 }

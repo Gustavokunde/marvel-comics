@@ -1,0 +1,9 @@
+{
+    "title": "Character: {{name}}",
+    "noWorks": "There is no work to show",
+    "workTitle": {
+        "comics": "Comics",
+        "series": "Series",
+        "stories": "Stories"
+    }
+}
