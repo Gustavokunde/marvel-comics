@@ -1,6 +1,7 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, InputAdornment, Skeleton } from '@mui/material';
 import TextField, { TextFieldVariants } from '@mui/material/TextField';
+import { ResponsiveCirclePacking } from '@nivo/circle-packing';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -81,8 +82,30 @@ const CharactersList = () => {
     };
   };
 
+  const dataChart = {
+    name: 'Marvel Characters',
+    children: data.map((character) => ({
+      name: character.name,
+      value: character.comics.available,
+    })),
+  };
+
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8">
+      <div className="h-full w-full">
+        <ResponsiveCirclePacking
+          data={dataChart}
+          id="name"
+          value="value"
+          padding={4}
+          enableLabels={true}
+          labelsSkipRadius={10}
+          labelTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+          colors={{ scheme: 'nivo' }}
+          borderColor={{ from: 'color', modifiers: [['darker', 0.5]] }}
+          animate={true}
+        />
+      </div>
       <Modal />
       <section className="flex flex-wrap justify-center gap-4">
         <TextField {...inputFilterProps('Name')} />
