@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve",
+    "start": "nx serve && set NODE_ENV=development",
     "build": "nx build",
     "test": "nx test",
     "test:e2e": "cypress open",
