@@ -2,6 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Button, InputAdornment, Skeleton } from '@mui/material';
 import TextField, { TextFieldVariants } from '@mui/material/TextField';
 import { useCallback, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import CharacterDetailsModal from '../../components/CharacterDetails/CharacterDetails';
 import useModal from '../../hooks/modal';
@@ -15,6 +16,7 @@ const CharactersList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
   const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
+  const { t } = useTranslation(['characters-list']);
 
   const { loading, data, pagination } = useSelector(
     (state: RootState) => state.characters
@@ -48,7 +50,10 @@ const CharactersList = () => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const value = event.target.value;
       const name = event.target.name;
-      setFilterBy((prevState) => ({ ...prevState, [name]: value }));
+      setFilterBy((prevState) => ({
+        ...prevState,
+        [name.toLowerCase()]: value,
+      }));
     },
     [setFilterBy]
   );
@@ -61,7 +66,7 @@ const CharactersList = () => {
   const inputFilterProps = (name: string) => {
     return {
       id: name,
-      label: 'Filter by ' + name,
+      label: t('filterBy' + name + 'Label'),
       variant: 'outlined' as TextFieldVariants,
       name: name,
       onChange: onChangeFilter,
@@ -80,15 +85,10 @@ const CharactersList = () => {
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8">
       <Modal />
       <section className="flex flex-wrap justify-center gap-4">
-        <TextField {...inputFilterProps('name')} />
-        <TextField {...inputFilterProps('work')} />
+        <TextField {...inputFilterProps('Name')} />
+        <TextField {...inputFilterProps('Work')} />
       </section>
-      {loading && (
-        <p className="text-center">
-          {' '}
-          We are working on bringing the characters for you...
-        </p>
-      )}
+      {loading && <p className="text-center">{t('loading')}</p>}
       <div className="flex justify-center w-full flex-wrap gap-4">
         {loading &&
           Array(3)
@@ -126,7 +126,7 @@ const CharactersList = () => {
                 data-testid="see-details"
                 onClick={() => onCharacterDetailsClick(character)}
               >
-                See details
+                {t('seeDetailsButton')}
               </Button>
             </div>
           ))}

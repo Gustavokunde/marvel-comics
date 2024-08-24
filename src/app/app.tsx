@@ -1,7 +1,8 @@
 import { Alert } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { RootState } from 'src/store';
+import { LanguageSelector } from '../components/LanguageSelector';
 import { CharactersList } from '../pages/CharactersList';
+import { RootState } from '../store';
 
 export function App() {
   const charactersError = useSelector(
@@ -10,6 +11,7 @@ export function App() {
 
   return (
     <div className="min-h-screen">
+      <LanguageSelector />
       {charactersError && <Alert severity="error">{charactersError}</Alert>}
       <CharactersList />
     </div>
