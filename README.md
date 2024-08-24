@@ -10,7 +10,6 @@
  <a href="#status">Status</a> •
  <a href="#objetivo">Objetivo</a> • 
  <a href="#features">Features</a> • 
- <a href="#melhorias">Melhorias</a> • 
  <a href="#tecnologias">Tecnologias</a> • 
  <a href="#pré-requisitos">Pré-requisitos</a> • 
  <a href="#rodar-o-projeto">Rodar o Projeto</a> • 
@@ -34,13 +33,6 @@
 - [x] Testes unitários completos
 - [x] Integração com gráficos para visualização de dados
 
-### Melhorias
-
-- [ ] Melhorar a usabilidade do modal
-- [ ] Adicionar mais detalhes sobre cada personagem
-- [ ] Implementar testes end-to-end
-- [ ] Melhorar o layout responsivo para dispositivos móveis
-
 ### Tecnologias
 
 - [Nx](https://nx.dev/)
@@ -54,6 +46,7 @@
 - [React i18n](https://react.i18next.com/)
 - [Vitest](https://vitest.dev/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+- [Cypress](https://www.cypress.io/)
 
 ### Pré-requisitos
 
