@@ -5,12 +5,25 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test --watch"
   },
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
+    "@nivo/circle-packing": "^0.87.0",
+    "@nivo/core": "^0.87.0",
+    "@reduxjs/toolkit": "^2.2.7",
+    "crypto-js": "^4.2.0",
+    "i18next": "^23.14.0",
+    "i18next-http-backend": "^2.6.1",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "react-i18next": "^15.0.1",
+    "react-redux": "^9.1.2",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@nx/cypress": "19.6.2",
@@ -25,7 +38,9 @@
     "@swc/cli": "~0.3.12",
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
+    "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "15.0.6",
+    "@types/crypto-js": "^4.2.2",
     "@types/node": "18.16.9",
     "@types/react": "18.3.1",
     "@types/react-dom": "18.3.0",
