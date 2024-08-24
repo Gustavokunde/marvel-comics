@@ -55,7 +55,7 @@ describe('Home tests', () => {
       fetchCharactersData.mockImplementationOnce(mockedFetch);
     renderComponent();
 
-    const filterByName = screen.getByTestId('filterbyname');
+    const filterByName = screen.getByTestId('filterbyName');
     fireEvent.change(filterByName, { target: { value: 'value' } });
 
     act(() => {
@@ -82,7 +82,7 @@ describe('Home tests', () => {
       fetchCharactersData.mockImplementationOnce(mockedFetch);
     renderComponent();
 
-    const fulterByWork = screen.getByTestId('filterbywork');
+    const fulterByWork = screen.getByTestId('filterbyWork');
     fireEvent.change(fulterByWork, { target: { value: 'value' } });
 
     act(() => {

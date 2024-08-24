@@ -1,7 +1,7 @@
 /// <reference types='vitest' />
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: __dirname,
@@ -38,11 +38,17 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     include: ['src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
-
+    deps: {
+      inline: ['@nivo'],
+    },
     reporters: ['default'],
     coverage: {
       reportsDirectory: './coverage/org',
       provider: 'v8',
     },
+    alias: {
+      '@nivo/circle-packing': require.resolve('@nivo/circle-packing'),
+    },
+    setupFiles: './vitest.setup.ts',
   },
 });
