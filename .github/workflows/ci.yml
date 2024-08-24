@@ -40,4 +40,6 @@ jobs:
 
       - name: Build the project
         run: npm run build  
-      
+        
+      - name: Deploy the project
+        run: npm run deploy  
