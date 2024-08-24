@@ -1,7 +1,7 @@
 import { Alert } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { LanguageSelector } from '../components/LanguageSelector';
-import { CharactersList } from '../pages/CharactersList';
+import { Home } from '../pages/Home';
 import { RootState } from '../store';
 
 export function App() {
@@ -10,10 +10,10 @@ export function App() {
   );
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-light-gray">
       <LanguageSelector />
       {charactersError && <Alert severity="error">{charactersError}</Alert>}
-      <CharactersList />
+      <Home />
     </div>
   );
 }

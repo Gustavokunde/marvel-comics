@@ -6,9 +6,9 @@ export interface Character {
     path: string;
     extension: string;
   };
-  comics: WorkList;
-  series: WorkList;
-  stories: WorkList;
+  comics?: WorkList;
+  series?: WorkList;
+  stories?: WorkList;
 }
 
 export interface Work {

@@ -1,19 +1,19 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { Button, InputAdornment, Skeleton } from '@mui/material';
+import { InputAdornment } from '@mui/material';
 import TextField, { TextFieldVariants } from '@mui/material/TextField';
-import { ResponsiveCirclePacking } from '@nivo/circle-packing';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import CharacterDetailsModal from '../../components/CharacterDetails/CharacterDetails';
+import CharactersList from '../../components/CharactersList/CharactersList';
+import ComicsByCharacterChart from '../../components/ComicsByCharacterChart/ComicsByCharacterChart';
 import useModal from '../../hooks/modal';
 import usePagination from '../../hooks/paginations';
 import { Character } from '../../interfaces/character';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCharactersData } from '../../store/characters/thunks/fetchCharacters';
-import { colors } from '../../utils/colors';
 
-const CharactersList = () => {
+const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
   const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
@@ -82,81 +82,23 @@ const CharactersList = () => {
     };
   };
 
-  const dataChart = {
-    name: 'Marvel Characters',
-    children: data.map((character) => ({
-      name: character.name,
-      value: character.comics.available,
-    })),
-  };
-
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8">
-      <div className="h-full w-full">
-        <ResponsiveCirclePacking
-          data={dataChart}
-          id="name"
-          value="value"
-          padding={4}
-          enableLabels={true}
-          labelsSkipRadius={10}
-          labelTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
-          colors={{ scheme: 'nivo' }}
-          borderColor={{ from: 'color', modifiers: [['darker', 0.5]] }}
-          animate={true}
-        />
-      </div>
       <Modal />
-      <section className="flex flex-wrap justify-center gap-4">
+      <section className="flex flex-wrap justify-center gap-4 rounded bg-white p-4">
         <TextField {...inputFilterProps('Name')} />
         <TextField {...inputFilterProps('Work')} />
       </section>
+      <ComicsByCharacterChart characters={data} />
       {loading && <p className="text-center">{t('loading')}</p>}
-      <div className="flex justify-center w-full flex-wrap gap-4">
-        {loading &&
-          Array(3)
-            .fill(0)
-            .map((item, index) => (
-              <Skeleton
-                data-testid="skeleton"
-                key={index}
-                variant="rectangular"
-                className="rounded"
-                sx={{ bgcolor: colors.darkGreen }}
-                width={320}
-                height={320}
-              />
-            ))}
-        {data &&
-          !loading &&
-          data.map((character) => (
-            <div
-              key={character.id}
-              className="w-80 h-80 p-4 rounded 
-              flex flex-col items-center justify-between 
-              bg-dark-green text-white
-              ease-in duration-300 hover:scale-105"
-            >
-              <span data-testid="character-name">{character.name}</span>
-              <img
-                data-testid="character-image"
-                className="max-w-full max-h-52 object-contain"
-                src={`${character?.thumbnail?.path}.${character?.thumbnail?.extension}`}
-                alt={character.name + 'thumbnail'}
-              />
-              <Button
-                variant="contained"
-                data-testid="see-details"
-                onClick={() => onCharacterDetailsClick(character)}
-              >
-                {t('seeDetailsButton')}
-              </Button>
-            </div>
-          ))}
-      </div>
+      <CharactersList
+        loading={loading}
+        characters={data}
+        onActionClick={onCharacterDetailsClick}
+      />
       <Pagination />
     </div>
   );
 };
 
-export default CharactersList;
+export default Home;

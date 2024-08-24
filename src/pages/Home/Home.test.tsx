@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { CharactersListDTO } from 'src/services/characters';
 import store from '../../store';
 import * as fetchThunk from '../../store/characters/thunks/fetchCharacters';
-import CharactersList from './CharactersList';
+import CharactersList from './Home';
 
 const fetchCharactersData = vi.spyOn(fetchThunk, 'fetchCharactersData');
 
@@ -24,7 +24,7 @@ vi.mock('@mui/icons-material/Search', () => {
   };
 });
 
-describe('Characters list tests', () => {
+describe('Home tests', () => {
   const renderComponent = () =>
     render(
       <Provider store={store}>
@@ -96,51 +96,6 @@ describe('Characters list tests', () => {
           filterByWork: 'value',
         })
       );
-    });
-  });
-  it('should show skeleton component when fetch is loading', async () => {
-    renderComponent();
-
-    await waitFor(() => {
-      const skeletonComponents = screen.getAllByTestId('skeleton');
-      expect(skeletonComponents).toHaveLength(3);
-    });
-  });
-  it('should open a modal with the character description when clicking in see details button', async () => {
-    fetchCharactersData.mockImplementationOnce(
-      createAsyncThunk('characters/fetchCharactersData', async () => ({
-        results: [{ name: 'card name' }],
-      }))
-    );
-
-    renderComponent();
-
-    await waitFor(() => {
-      screen.getByTestId('see-details').click();
-    });
-
-    const modal = screen.getByTestId('modal-content');
-    expect(modal).toBeInTheDocument();
-  });
-  it('should show character name and image', async () => {
-    fetchCharactersData.mockImplementationOnce(
-      createAsyncThunk('characters/fetchCharactersData', async () => ({
-        results: [
-          {
-            name: 'card name',
-            thumbnail: { path: 'path', extension: 'extension' },
-          },
-        ],
-      }))
-    );
-
-    renderComponent();
-
-    await waitFor(() => {
-      const characterName = screen.getByTestId('character-name');
-      expect(characterName).toBeInTheDocument();
-      const characterImage = screen.getByTestId('character-image');
-      expect(characterImage).toBeInTheDocument();
     });
   });
 });
