@@ -10,7 +10,7 @@ i18n
     fallbackLng: 'en',
     ns: ['character-details', 'characters-list'],
     backend: {
-      loadPath: 'locales/{{lng}}/{{ns}}.json',
+      loadPath: 'marvel-comics/locales/{{lng}}/{{ns}}.json',
     },
     interpolation: {
       escapeValue: false,

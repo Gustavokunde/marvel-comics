@@ -10,13 +10,13 @@ const ComicsByCharacterChart = ({
   const { t } = useTranslation(['characters-list']);
 
   const dataChart = {
-    children: characters.map((character) => ({
+    children: characters?.map((character) => ({
       name: character.name,
       value: character.comics?.available,
     })),
   };
 
-  return characters.length ? (
+  return characters?.length ? (
     <section
       className="
      w-full flex flex-col items-center
