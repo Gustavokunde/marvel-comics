@@ -13,20 +13,25 @@ const useModal = ({ internalContent }: Props) => {
 
   const ModalItem = () => {
     return (
-      <Modal open={isOpen} onClose={closeModal}>
+      <Modal open={isOpen} onClose={closeModal} disablePortal hideBackdrop>
         <div
-          data-testid="modal-content"
-          className="bg-white rounded min-w-80 
-        absolute top-1/2 left-1/2 shadow-inner -translate-x-1/2 -translate-y-1/2 "
+          className="flex justify-center items-center w-screen h-screen"
+          onClick={closeModal}
         >
-          <section className="flex justify-end pr-2 pt-2">
-            <CloseIcon
-              role="button"
-              data-testid="close-icon"
-              onClick={closeModal}
-            />
-          </section>
-          {internalContent}
+          <div
+            data-testid="modal-content"
+            className="bg-white rounded min-w-80 shadow-inner"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <section className="flex justify-end pr-2 pt-2">
+              <CloseIcon
+                role="button"
+                data-testid="close-icon"
+                onClick={closeModal}
+              />
+            </section>
+            {internalContent}
+          </div>
         </div>
       </Modal>
     );

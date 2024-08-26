@@ -83,7 +83,7 @@ const Home = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center w-full p-4 gap-8">
+    <div className="flex flex-col items-center justify-center w-full p-4 gap-8 relative">
       <Modal />
       <section className="flex flex-wrap justify-center gap-4 rounded bg-white p-4">
         <TextField {...inputFilterProps('Name')} />

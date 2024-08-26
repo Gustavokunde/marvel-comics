@@ -5,8 +5,9 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: __dirname,
+  envPrefix: 'VITE_',
   cacheDir: './node_modules/.vite/org',
-  base: '/',
+  base: process.env.NODE_ENV === 'production' ? '/marvel-comics/' : '/',
   server: {
     port: 4200,
     host: 'localhost',
@@ -31,6 +32,7 @@ export default defineConfig({
     commonjsOptions: {
       transformMixedEsModules: true,
     },
+    rollupOptions: { external: ['cypress'] },
   },
 
   test: {

@@ -1,8 +1,8 @@
 # Marvel Comics
 
 ## Descrição do Projeto
-
-<p>O projeto <strong>Marvel Comics</strong> foi desenvolvido com <strong>React</strong> e <strong>TypeScript</strong>, utilizando <strong>Vite</strong> e <strong>Nx</strong> como ferramentas de desenvolvimento. Ele lista os personagens da <a href="https://developer.marvel.com" target="_blank">API da Marvel</a>, exibindo detalhes de cada personagem através de um modal. O projeto inclui paginação ao final da página e conta com disponibilidade nos idiomas Português e Inglês.</p>
+<p> Demostração disponível em: [Github pages](https://gustavokunde.github.io/marvel-comics/)
+<p>O projeto <strong>Marvel Comics</strong> foi desenvolvido com <strong>React</strong> e <strong>TypeScript</strong>, utilizando <strong>Vite</strong> e <strong>Nx</strong> como ferramentas de desenvolvimento. Ele lista os personagens da <a href="https://developer.marvel.com" target="_blank">API da Marvel</a>, exibindo detalhes de cada personagem através de um modal. O projeto inclui disponibilidade nos idiomas Português e Inglês.</p>
 
 <p>Os personagens são listados com paginação na página inicial, e ao clicar em um personagem, um modal exibe detalhes adicionais sobre ele.</p>
 

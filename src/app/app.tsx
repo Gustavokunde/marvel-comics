@@ -10,7 +10,7 @@ export function App() {
   );
 
   return (
-    <div className="min-h-screen bg-light-gray">
+    <div className="min-h-screen bg-light-gray w-screen">
       <LanguageSelector />
       {charactersError && <Alert severity="error">{charactersError}</Alert>}
       <Home />
