@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve && set NODE_ENV=development",
+    "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
     "test:e2e": "cypress open",
     "deploy": "gh-pages -d dist/org",
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run --config integrationFolder=cypress/e2e",
     "prepush-checks": "npm run build && npm test && npm run cypress:run"
   },
   "private": true,

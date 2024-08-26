@@ -1,0 +1,532 @@
+{
+  "version": "6.0",
+  "nxVersion": "19.6.2",
+  "deps": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.16.7",
+    "@mui/material": "^5.16.7",
+    "@nivo/circle-packing": "^0.87.0",
+    "@nivo/core": "^0.87.0",
+    "@reduxjs/toolkit": "^2.2.7",
+    "crypto-js": "^4.2.0",
+    "i18next": "^23.14.0",
+    "i18next-http-backend": "^2.6.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-i18next": "^15.0.1",
+    "react-redux": "^9.1.2",
+    "redux-thunk": "^3.1.0",
+    "@nx/cypress": "19.6.2",
+    "@nx/eslint": "19.6.2",
+    "@nx/eslint-plugin": "19.6.2",
+    "@nx/js": "19.6.2",
+    "@nx/react": "19.6.2",
+    "@nx/vite": "19.6.2",
+    "@nx/web": "19.6.2",
+    "@nx/workspace": "19.6.2",
+    "@swc-node/register": "~1.9.1",
+    "@swc/cli": "~0.3.12",
+    "@swc/core": "~1.5.7",
+    "@swc/helpers": "~0.5.11",
+    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/react": "15.0.6",
+    "@types/crypto-js": "^4.2.2",
+    "@types/node": "18.16.9",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.0",
+    "@typescript-eslint/parser": "^7.16.0",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/coverage-v8": "^1.0.4",
+    "@vitest/ui": "^1.3.1",
+    "autoprefixer": "10.4.13",
+    "cypress": "^13.13.3",
+    "eslint": "~8.57.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-cypress": "^2.13.4",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-jsx-a11y": "6.7.1",
+    "eslint-plugin-react": "7.32.2",
+    "eslint-plugin-react-hooks": "4.6.0",
+    "gh-pages": "^6.1.1",
+    "husky": "^9.1.5",
+    "jsdom": "~22.1.0",
+    "nx": "19.6.2",
+    "postcss": "8.4.38",
+    "prettier": "^2.6.2",
+    "tailwindcss": "3.4.3",
+    "typescript": "~5.5.2",
+    "vite": "^5.0.0",
+    "vitest": "^1.3.1"
+  },
+  "pathMappings": {},
+  "nxJsonPlugins": [
+    {
+      "name": "@nx/vite/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "testTargetName": "test",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "name": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "name": "@nx/cypress/plugin",
+      "options": {
+        "targetName": "e2e",
+        "openTargetName": "open-cypress",
+        "componentTestingTargetName": "component-test",
+        "ciTargetName": "e2e-ci"
+      }
+    }
+  ],
+  "fileMap": {
+    "nonProjectFiles": [],
+    "projectFileMap": {
+      "org": [
+        {
+          "file": ".env.example",
+          "hash": "13096290651636416302"
+        },
+        {
+          "file": ".eslintignore",
+          "hash": "7663861978715868291"
+        },
+        {
+          "file": ".eslintrc.json",
+          "hash": "11851112797058176898"
+        },
+        {
+          "file": ".github/workflows/ci.yml",
+          "hash": "5544460399333985573"
+        },
+        {
+          "file": ".gitignore",
+          "hash": "5822388183911730561"
+        },
+        {
+          "file": ".husky/_/h",
+          "hash": "7698839355888747424"
+        },
+        {
+          "file": ".husky/_/husky.sh",
+          "hash": "13043511523326965616"
+        },
+        {
+          "file": ".husky/_/pre-push",
+          "hash": "15523312367855404791"
+        },
+        {
+          "file": ".nx/workspace-data/d/server-process.json",
+          "hash": "9659238068493794867"
+        },
+        {
+          "file": ".prettierignore",
+          "hash": "14688272390704683536"
+        },
+        {
+          "file": ".prettierrc",
+          "hash": "16267754514737964994"
+        },
+        {
+          "file": ".vscode/extensions.json",
+          "hash": "4134969992917317260"
+        },
+        {
+          "file": "README.md",
+          "hash": "17911519514222263107"
+        },
+        {
+          "file": "cypress.config.ts",
+          "hash": "12684429232592379628",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:cypress"
+          ]
+        },
+        {
+          "file": "index.html",
+          "hash": "12558716022525483513"
+        },
+        {
+          "file": "nx.json",
+          "hash": "14560774647332216367"
+        },
+        {
+          "file": "package-lock.json",
+          "hash": "10720225234953341612"
+        },
+        {
+          "file": "package.json",
+          "hash": "8240961433120858307",
+          "deps": [
+            "npm:@nx/cypress",
+            "npm:@nx/eslint",
+            "npm:@nx/eslint-plugin",
+            "npm:@nx/js",
+            "npm:@nx/react",
+            "npm:@nx/vite",
+            "npm:@nx/web",
+            "npm:@nx/workspace",
+            "npm:@swc-node/register",
+            "npm:@swc/cli",
+            "npm:@swc/core",
+            "npm:@swc/helpers",
+            "npm:@testing-library/jest-dom",
+            "npm:@testing-library/react",
+            "npm:@types/crypto-js",
+            "npm:@types/node",
+            "npm:@types/react",
+            "npm:@types/react-dom",
+            "npm:@typescript-eslint/eslint-plugin",
+            "npm:@typescript-eslint/parser",
+            "npm:@vitejs/plugin-react",
+            "npm:@vitest/coverage-v8",
+            "npm:@vitest/ui",
+            "npm:autoprefixer",
+            "npm:cypress",
+            "npm:eslint",
+            "npm:eslint-config-prettier",
+            "npm:eslint-plugin-cypress",
+            "npm:eslint-plugin-import",
+            "npm:eslint-plugin-jsx-a11y",
+            "npm:eslint-plugin-react",
+            "npm:eslint-plugin-react-hooks",
+            "npm:gh-pages",
+            "npm:husky",
+            "npm:jsdom",
+            "npm:nx",
+            "npm:postcss",
+            "npm:prettier",
+            "npm:tailwindcss",
+            "npm:typescript",
+            "npm:vite",
+            "npm:vitest",
+            "npm:@emotion/react",
+            "npm:@emotion/styled",
+            "npm:@mui/icons-material",
+            "npm:@mui/material",
+            "npm:@nivo/circle-packing",
+            "npm:@nivo/core",
+            "npm:@reduxjs/toolkit",
+            "npm:crypto-js",
+            "npm:i18next",
+            "npm:i18next-http-backend",
+            "npm:react",
+            "npm:react-dom",
+            "npm:react-i18next",
+            "npm:react-redux",
+            "npm:redux-thunk"
+          ]
+        },
+        {
+          "file": "postcss.config.js",
+          "hash": "2759402739052110475"
+        },
+        {
+          "file": "project.json",
+          "hash": "9623716555275153214"
+        },
+        {
+          "file": "public/favicon.ico",
+          "hash": "9303420814833116677"
+        },
+        {
+          "file": "public/locales/en/character-details.json",
+          "hash": "14361567026415738205"
+        },
+        {
+          "file": "public/locales/en/characters-list.json",
+          "hash": "1377213866704945063"
+        },
+        {
+          "file": "public/locales/pt/character-details.json",
+          "hash": "3425613613007465497"
+        },
+        {
+          "file": "public/locales/pt/characters-list.json",
+          "hash": "864398755838446702"
+        },
+        {
+          "file": "public/marvel-logo.png",
+          "hash": "8917292139287048911"
+        },
+        {
+          "file": "src/app/app.tsx",
+          "hash": "17577839169193230077",
+          "deps": [
+            "npm:@mui/material",
+            "npm:react-redux"
+          ]
+        },
+        {
+          "file": "src/assets/.gitkeep",
+          "hash": "3244421341483603138"
+        },
+        {
+          "file": "src/components/CharacterDetails/CharacterDetails.test.tsx",
+          "hash": "11059277036555676219",
+          "deps": [
+            "npm:@testing-library/jest-dom",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "src/components/CharacterDetails/CharacterDetails.tsx",
+          "hash": "4884799841696334891",
+          "deps": [
+            "npm:react-i18next"
+          ]
+        },
+        {
+          "file": "src/components/CharacterDetails/content.ts",
+          "hash": "7599744296444058067"
+        },
+        {
+          "file": "src/components/CharacterDetails/index.tsx",
+          "hash": "3241711363235323001"
+        },
+        {
+          "file": "src/components/CharactersList/CharactersList.test.tsx",
+          "hash": "8642311956433637116",
+          "deps": [
+            "npm:@testing-library/jest-dom",
+            "npm:@testing-library/react"
+          ]
+        },
+        {
+          "file": "src/components/CharactersList/CharactersList.tsx",
+          "hash": "6596139584994979347",
+          "deps": [
+            "npm:@mui/material",
+            "npm:react-i18next"
+          ]
+        },
+        {
+          "file": "src/components/CharactersList/index.tsx",
+          "hash": "10551243973052942605"
+        },
+        {
+          "file": "src/components/ComicsByCharacterChart/ComicsByCharacterChart.tsx",
+          "hash": "352405179544247531",
+          "deps": [
+            "npm:@nivo/circle-packing",
+            "npm:react-i18next"
+          ]
+        },
+        {
+          "file": "src/components/LanguageSelector/LanguageSelector.tsx",
+          "hash": "7187024455279587282",
+          "deps": [
+            "npm:@mui/icons-material",
+            "npm:@mui/material",
+            "npm:react",
+            "npm:react-i18next"
+          ]
+        },
+        {
+          "file": "src/components/LanguageSelector/index.tsx",
+          "hash": "13370513225067067803"
+        },
+        {
+          "file": "src/hooks/modal.test.tsx",
+          "hash": "14153038157003379828",
+          "deps": [
+            "npm:@testing-library/jest-dom",
+            "npm:@testing-library/react",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/hooks/modal.tsx",
+          "hash": "12343362249600002026",
+          "deps": [
+            "npm:@mui/icons-material",
+            "npm:@mui/material",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/hooks/paginations.tsx",
+          "hash": "8326317448525116717",
+          "deps": [
+            "npm:@mui/material",
+            "npm:react"
+          ]
+        },
+        {
+          "file": "src/i18n.js",
+          "hash": "3313190767737421606",
+          "deps": [
+            "npm:i18next",
+            "npm:i18next-http-backend",
+            "npm:react-i18next"
+          ]
+        },
+        {
+          "file": "src/interfaces/character.ts",
+          "hash": "7835061530775040336"
+        },
+        {
+          "file": "src/main.tsx",
+          "hash": "14527613674741465560",
+          "deps": [
+            "npm:react",
+            "npm:react-dom",
+            "npm:@mui/material",
+            "npm:react-redux"
+          ]
+        },
+        {
+          "file": "src/pages/Home/Home.test.tsx",
+          "hash": "2447579457777823795",
+          "deps": [
+            "npm:@reduxjs/toolkit",
+            "npm:@testing-library/jest-dom",
+            "npm:@testing-library/react",
+            "npm:react",
+            "npm:react-redux"
+          ]
+        },
+        {
+          "file": "src/pages/Home/Home.tsx",
+          "hash": "5564786371263104536",
+          "deps": [
+            "npm:@mui/icons-material",
+            "npm:@mui/material",
+            "npm:react",
+            "npm:react-i18next",
+            "npm:react-redux"
+          ]
+        },
+        {
+          "file": "src/pages/Home/index.tsx",
+          "hash": "204596199023221714"
+        },
+        {
+          "file": "src/services/api.ts",
+          "hash": "13312460984042800397",
+          "deps": [
+            "npm:axios",
+            "npm:crypto-js"
+          ]
+        },
+        {
+          "file": "src/services/characters.ts",
+          "hash": "8298529640475964045"
+        },
+        {
+          "file": "src/store/characters/charactersSlice.ts",
+          "hash": "16693148802810585005",
+          "deps": [
+            "npm:@reduxjs/toolkit"
+          ]
+        },
+        {
+          "file": "src/store/characters/thunks/fetchCharacters.ts",
+          "hash": "7311088316562716889",
+          "deps": [
+            "npm:@reduxjs/toolkit"
+          ]
+        },
+        {
+          "file": "src/store/index.ts",
+          "hash": "18064832834555126804",
+          "deps": [
+            "npm:@reduxjs/toolkit"
+          ]
+        },
+        {
+          "file": "src/styles.css",
+          "hash": "9540575453073076294"
+        },
+        {
+          "file": "src/utils/colors.ts",
+          "hash": "15908921432910194456"
+        },
+        {
+          "file": "tailwind.config.js",
+          "hash": "7298653760622968678",
+          "deps": [
+            "npm:@nx/react"
+          ]
+        },
+        {
+          "file": "tsconfig.app.json",
+          "hash": "11607801024217895498"
+        },
+        {
+          "file": "tsconfig.json",
+          "hash": "10138901573215323733"
+        },
+        {
+          "file": "tsconfig.spec.json",
+          "hash": "12203409757962645647"
+        },
+        {
+          "file": "vite.config.ts",
+          "hash": "7991322242563762000",
+          "deps": [
+            "npm:@nx/vite",
+            "npm:@vitejs/plugin-react",
+            "npm:vite",
+            [
+              "npm:@nivo/circle-packing",
+              "dynamic"
+            ]
+          ]
+        },
+        {
+          "file": "vitest.setup.ts",
+          "hash": "13720071120948017763",
+          "deps": [
+            "npm:@nivo/circle-packing",
+            "npm:vitest"
+          ]
+        }
+      ],
+      "marvel-comics-e2e": [
+        {
+          "file": "e2e/.eslintrc.json",
+          "hash": "16745924632016023354"
+        },
+        {
+          "file": "e2e/project.json",
+          "hash": "3593260740746504859"
+        },
+        {
+          "file": "e2e/src/e2e/home.cy.ts",
+          "hash": "3995781810751599601"
+        },
+        {
+          "file": "e2e/src/fixtures/example.json",
+          "hash": "11785586596216172004"
+        },
+        {
+          "file": "e2e/src/support/app.po.ts",
+          "hash": "11157016311132186162"
+        },
+        {
+          "file": "e2e/src/support/commands.ts",
+          "hash": "5397443931564808659"
+        },
+        {
+          "file": "e2e/src/support/e2e.ts",
+          "hash": "1054106023200826784"
+        },
+        {
+          "file": "e2e/tsconfig.json",
+          "hash": "14125977923036463922"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "run": {
+    "command": "nx build",
+    "startTime": "2024-08-26T09:59:05.540Z",
+    "endTime": "2024-08-26T09:59:05.574Z",
+    "inner": false
+  },
+  "tasks": [
+    {
+      "taskId": "org:build",
+      "target": "build",
+      "projectName": "org",
+      "hash": "10327707303903331334",
+      "startTime": "2024-08-26T09:59:05.547Z",
+      "endTime": "2024-08-26T09:59:05.572Z",
+      "params": "",
+      "cacheStatus": "local-cache-hit",
+      "status": 0
+    }
+  ]
+}

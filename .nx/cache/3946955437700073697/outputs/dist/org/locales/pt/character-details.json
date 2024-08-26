@@ -1,0 +1,9 @@
+{
+    "title": "Personagem: {{name}}",
+    "noWorks": "Não há obras a serem exibidas",
+    "workTitle": {
+        "comics": "Quadrinhos",
+        "series": "Series",
+        "stories": "Histórias"
+    }
+}
