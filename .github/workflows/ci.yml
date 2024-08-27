@@ -3,20 +3,33 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - test
   pull_request:
 
 permissions:
-  actions: read
-  contents: read
+  actions: write
+  contents: write
 
 jobs:
   main:
     runs-on: ubuntu-latest
+    environment: github-pages
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Enable debug logging
+        run: echo "ACTIONS_STEP_DEBUG=true" >> $GITHUB_ENV
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Git
+        run: |
+          git config --global user.name gustavokunde
+          git config --global user.email gustavokunde@gmail.com
 
       # Cache node_modules
       - uses: actions/setup-node@v4
@@ -24,22 +37,35 @@ jobs:
           node-version: 20
           cache: 'npm'
 
+      - name: Install npm
+        run: npm install -g npm
+
       - run: npm ci --legacy-peer-deps
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: 'npm'  
+      - name: Print environment variables
+        run: printenv
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
+          VITE_MARVEL_PUBLIC_KEY: ${{ secrets.VITE_MARVEL_PUBLIC_KEY }}
+          VITE_MARVEL_PRIVATE_KEY: ${{ secrets.VITE_MARVEL_PRIVATE_KEY }}
 
       - name: Install dependencies
-        run: npm install  
+        run: npm install
 
       - name: Run tests
         run: npm run test
 
+      - name: Clean Nx cache
+        run: npx nx reset
+
       - name: Build the project
-        run: npm run build  
-        
+        run: |
+          echo "Starting build process..."
+          NX_VERBOSE_LOGGING=true NX_CLOUD=false npm run build --verbose
+
       - name: Deploy the project
-        run: npm run deploy  
+        run: |
+          git config --global user.name gustavokunde
+          git config --global user.email gustavokunde@gmail.com
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+          npm run deploy
