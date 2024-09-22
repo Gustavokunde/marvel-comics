@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve && set NODE_ENV=development",
+    "start:json-server": "json-server --watch db.json --port 5000",
     "build": "nx build",
     "test": "nx test",
     "test:e2e": "cypress open",
@@ -15,6 +16,7 @@
   "dependencies": {
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@hookform/resolvers": "^3.9.0",
     "@mui/icons-material": "^5.16.7",
     "@mui/material": "^5.16.7",
     "@nivo/circle-packing": "^0.87.0",
@@ -25,9 +27,12 @@
     "i18next-http-backend": "^2.6.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
+    "react-hook-form": "^7.53.0",
     "react-i18next": "^15.0.1",
     "react-redux": "^9.1.2",
-    "redux-thunk": "^3.1.0"
+    "react-router-dom": "^6.26.2",
+    "redux-thunk": "^3.1.0",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nx/cypress": "19.6.2",

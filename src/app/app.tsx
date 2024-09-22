@@ -1,6 +1,7 @@
 import { Alert } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { LanguageSelector } from '../components/LanguageSelector';
+import { UserProvider } from '../contexts/UserContext';
 import { Home } from '../pages/Home';
 import { RootState } from '../store';
 
@@ -11,9 +12,11 @@ export function App() {
 
   return (
     <div className="min-h-screen bg-light-gray w-screen">
-      <LanguageSelector />
-      {charactersError && <Alert severity="error">{charactersError}</Alert>}
-      <Home />
+      <UserProvider>
+        <LanguageSelector />
+        {charactersError && <Alert severity="error">{charactersError}</Alert>}
+        <Home />
+      </UserProvider>
     </div>
   );
 }

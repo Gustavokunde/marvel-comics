@@ -1,4 +1,4 @@
-import api from './api';
+import { marvelApi as api } from './api';
 
 export interface CharactersListDTO {
   filterByName?: string;
