@@ -4,9 +4,7 @@ import CharactersList from './CharactersList';
 
 describe('Characters List tests', () => {
   it('should show skeleton component when fetch is loading', async () => {
-    render(
-      <CharactersList loading={true} characters={[]} onActionClick={vi.fn()} />
-    );
+    render(<CharactersList loading={true} characters={[]} />);
 
     const skeletonComponents = screen.getAllByTestId('skeleton');
     expect(skeletonComponents).toHaveLength(3);
@@ -18,13 +16,7 @@ describe('Characters List tests', () => {
       description: 'card description',
       id: 'id',
     };
-    render(
-      <CharactersList
-        loading={false}
-        characters={[character]}
-        onActionClick={actionClick}
-      />
-    );
+    render(<CharactersList loading={false} characters={[character]} />);
 
     screen.getByTestId('see-details').click();
 
@@ -37,7 +29,6 @@ describe('Characters List tests', () => {
         characters={[
           { name: 'card name', description: 'card description', id: 'id' },
         ]}
-        onActionClick={vi.fn()}
       />
     );
 

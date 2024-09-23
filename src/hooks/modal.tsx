@@ -1,11 +1,11 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Modal } from '@mui/material';
 import React, { useState } from 'react';
-
 interface Props {
   internalContent: React.ReactElement<HTMLElement>;
+  title: string;
 }
-const useModal = ({ internalContent }: Props) => {
+const useModal = ({ internalContent, title }: Props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -13,27 +13,32 @@ const useModal = ({ internalContent }: Props) => {
 
   const ModalItem = () => {
     return (
-      <Modal open={isOpen} onClose={closeModal} disablePortal hideBackdrop>
-        <div
-          className="flex justify-center items-center w-screen h-screen"
-          onClick={closeModal}
-        >
+      <div className="flex  absolute justify-center items-center h-screen w-screen">
+        <Modal open={isOpen} onClose={closeModal} disablePortal>
           <div
-            data-testid="modal-content"
-            className="bg-white rounded min-w-80 shadow-inner"
-            onClick={(e) => e.stopPropagation()}
+            className="flex justify-center items-center w-screen h-screen "
+            onClick={closeModal}
           >
-            <section className="flex justify-end pr-2 pt-2">
-              <CloseIcon
-                role="button"
-                data-testid="close-icon"
-                onClick={closeModal}
-              />
-            </section>
-            {internalContent}
+            <div
+              data-testid="modal-content"
+              className="bg-white rounded min-w-80 shadow-inner "
+              onClick={(e) => e.stopPropagation()}
+            >
+              <section className="flex justify-between px-2 pt-2">
+                <h1 className="text-xl mb-2">{title}</h1>
+                <CloseIcon
+                  role="button"
+                  data-testid="close-icon"
+                  onClick={closeModal}
+                />
+              </section>
+              <div className="max-h-[90vh] overflow-y-auto">
+                {internalContent}
+              </div>
+            </div>
           </div>
-        </div>
-      </Modal>
+        </Modal>
+      </div>
     );
   };
 

@@ -21,7 +21,7 @@ type Context = {
   createProfile: (user: User) => Promise<void>;
   updateProfile: (user: User) => void;
   deleteProfile: (id: string) => void;
-  saveCharacter: (character: Character) => void;
+  saveCharacter: (character: Character) => Promise<void>;
 };
 
 const UserContext = createContext<Context | null>(null);
@@ -53,7 +53,7 @@ export const UserProvider = ({ children }: Props) => {
     },
   });
 
-  const updateUserMutation = useMutation({
+  const { mutate: updateUserMutation } = useMutation({
     mutationFn: async (updatedUser: User) => {
       const { data } = await updateUser(updatedUser);
 
@@ -64,7 +64,7 @@ export const UserProvider = ({ children }: Props) => {
     },
   });
 
-  const deleteUserMutation = useMutation({
+  const { mutate: deleteUserMutation } = useMutation({
     mutationFn: async (id: string) => {
       await deleteUser(id);
     },
@@ -73,7 +73,7 @@ export const UserProvider = ({ children }: Props) => {
     },
   });
 
-  const saveCharacterInUserMutation = useMutation({
+  const { mutateAsync: saveCharacterInUserMutation } = useMutation({
     mutationFn: async (character: Character) => {
       const userCharacters = [...(user?.characters || [])];
       if (!user?.id) return;
@@ -104,10 +104,10 @@ export const UserProvider = ({ children }: Props) => {
       value={{
         user,
         saveCharacter: (character: Character) =>
-          saveCharacterInUserMutation.mutate(character),
+          saveCharacterInUserMutation(character),
         createProfile: (user: User) => addUserMutation(user),
-        updateProfile: (user: User) => updateUserMutation.mutate(user),
-        deleteProfile: (id: string) => deleteUserMutation.mutate(id),
+        updateProfile: (user: User) => updateUserMutation(user),
+        deleteProfile: (id: string) => deleteUserMutation(id),
       }}
     >
       {children}

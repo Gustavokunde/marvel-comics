@@ -1,31 +1,30 @@
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment } from '@mui/material';
+import { Alert, Button, InputAdornment } from '@mui/material';
 import TextField, { TextFieldVariants } from '@mui/material/TextField';
 import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
-import CharacterDetailsModal from '../../components/CharacterDetails/CharacterDetails';
+import { useNavigate } from 'react-router-dom';
 import CharactersList from '../../components/CharactersList/CharactersList';
 import { useProfile } from '../../contexts/UserContext';
-import useModal from '../../hooks/modal';
 import usePagination from '../../hooks/paginations';
 import { Character } from '../../interfaces/character';
+import { paths } from '../../routes';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCharactersData } from '../../store/characters/thunks/fetchCharacters';
 
 const Characters = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
-  const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
-  const { saveCharacter } = useProfile();
+
+  const [characterIsSaved, setCharacterIsSaved] = useState(false);
+  const { user, saveCharacter } = useProfile();
   const { t } = useTranslation(['characters-list']);
 
   const { loading, data, pagination } = useSelector(
     (state: RootState) => state.characters
   );
-  const { Modal, openModal } = useModal({
-    internalContent: <CharacterDetailsModal character={selectedCharacter} />,
-  });
 
   const { Pagination, pageNumber } = usePagination({
     count: pagination.count,
@@ -45,6 +44,16 @@ const Characters = () => {
   };
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCharacterIsSaved(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [characterIsSaved]);
+
+  useEffect(() => {
     fetchData();
   }, [pageNumber]);
 
@@ -59,11 +68,6 @@ const Characters = () => {
     },
     [setFilterBy]
   );
-
-  const onCharacterDetailsClick = (character: Character) => {
-    setSelectedItem(character);
-    openModal();
-  };
 
   const inputFilterProps = (name: string) => {
     return {
@@ -84,15 +88,29 @@ const Characters = () => {
   };
 
   const onFavoriteCharacter = (character: Character) => {
-    saveCharacter(character);
+    setCharacterIsSaved(false);
+    saveCharacter(character).then(() => setCharacterIsSaved(true));
   };
+
+  const navigateToFavorites = () => {
+    navigate(paths.FAVORITE_CHARACTERS);
+  };
+
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 relative">
       <h1>
         Busque pelos seus personagens favoritos e salve-os clicando em cima dos
-        que desejar!
+        que desejar
+        {user?.characters?.length && user?.characters?.length > 0 && (
+          <>
+            <span> ou</span>
+            <Button onClick={navigateToFavorites}>Veja seus favoritos</Button>
+          </>
+        )}
       </h1>
-      <Modal />
+      {characterIsSaved && (
+        <Alert severity="success">Personagem salvo com sucesso</Alert>
+      )}
       <section className="flex flex-wrap justify-center gap-4 rounded bg-white p-4">
         <TextField {...inputFilterProps('Name')} />
         <TextField {...inputFilterProps('Work')} />
@@ -101,7 +119,6 @@ const Characters = () => {
       <CharactersList
         loading={loading}
         characters={data}
-        onActionClick={onCharacterDetailsClick}
         onFavoriteCharacter={onFavoriteCharacter}
       />
       <Pagination />

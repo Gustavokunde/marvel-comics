@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { useProfile } from '../../contexts/UserContext';
 import { User } from '../../interfaces/user';
+import { paths } from '../../routes';
 
 const schema = z.object({
   name: z.string().min(1, 'Nome é obrigatório'),
@@ -37,7 +38,7 @@ export const CreateProfile = () => {
   }, [user]);
 
   const onSubmit = (data: User) => {
-    createProfile(data).then(() => navigate('/characters'));
+    createProfile(data).then(() => navigate(paths.FIND_CHARACTERS));
   };
 
   const handleInputFields = (name: keyof User) => {

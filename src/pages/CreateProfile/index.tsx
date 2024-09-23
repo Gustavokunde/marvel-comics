@@ -1,3 +1,3 @@
 import { CreateProfile } from './CreateProfile';
 
-export default CreateProfile;
+export { CreateProfile };

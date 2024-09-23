@@ -1,5 +1,5 @@
 import LanguageIcon from '@mui/icons-material/Language';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -21,9 +21,14 @@ const LanguageSelector = () => {
   };
   return (
     <section className="flex justify-end w-full p-1">
-      <IconButton onClick={openLanguageMenu} className="flex items-center pr-1">
-        <LanguageIcon role="button" />
-      </IconButton>
+      <Tooltip title="Alterar lingua">
+        <IconButton
+          onClick={openLanguageMenu}
+          className="flex items-center pr-1"
+        >
+          <LanguageIcon role="button" />
+        </IconButton>
+      </Tooltip>
       <Menu
         anchorEl={anchorEl}
         open={anchorEl !== null}

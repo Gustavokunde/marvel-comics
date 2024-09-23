@@ -12,7 +12,6 @@ const CharacterDetails = ({ character }: Props) => {
   const { t } = useTranslation(['character-details']);
   return (
     <div className="flex flex-col px-4 pb-4">
-      <h1 className="text-xl mb-2">{t('title', { name: character?.name })}</h1>
       <p>{character?.description}</p>
       {worksToShow.map((work) =>
         character && character[work]?.items.length ? (
