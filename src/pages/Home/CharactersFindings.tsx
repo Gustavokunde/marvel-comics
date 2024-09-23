@@ -6,14 +6,13 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import CharacterDetailsModal from '../../components/CharacterDetails/CharacterDetails';
 import CharactersList from '../../components/CharactersList/CharactersList';
-import ComicsByCharacterChart from '../../components/ComicsByCharacterChart/ComicsByCharacterChart';
 import useModal from '../../hooks/modal';
 import usePagination from '../../hooks/paginations';
 import { Character } from '../../interfaces/character';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCharactersData } from '../../store/characters/thunks/fetchCharacters';
 
-const Home = () => {
+const Characters = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
   const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
@@ -84,13 +83,16 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 relative">
+      <h1>
+        Busque pelos seus personagens favoritos e salve-os clicando em cima dos
+        que preferir!
+      </h1>
       <Modal />
       <section className="flex flex-wrap justify-center gap-4 rounded bg-white p-4">
         <TextField {...inputFilterProps('Name')} />
         <TextField {...inputFilterProps('Work')} />
       </section>
-      <ComicsByCharacterChart characters={data} />
-      {loading && <p className="text-center">{t('loading')}</p>}
+      {loading && <p className="text-center">{t('loading')}...</p>}
       <CharactersList
         loading={loading}
         characters={data}
@@ -101,4 +103,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Characters;

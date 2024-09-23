@@ -1,7 +1,6 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { StrictMode, Suspense } from 'react';
 import * as ReactDOM from 'react-dom/client';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import App from './app/app';
 import './i18n';

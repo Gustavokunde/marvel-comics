@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { CharactersListDTO } from '../../services/characters';
 import store from '../../store';
 import * as fetchThunk from '../../store/characters/thunks/fetchCharacters';
-import CharactersList from './Home';
+import CharactersList from './CharactersFindings';
 
 const fetchCharactersData = vi.spyOn(fetchThunk, 'fetchCharactersData');
 
@@ -24,7 +24,7 @@ vi.mock('@mui/icons-material/Search', () => {
   };
 });
 
-describe('Home tests', () => {
+describe('Characters tests', () => {
   const renderComponent = () =>
     render(
       <Provider store={store}>

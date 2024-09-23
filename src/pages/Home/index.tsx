@@ -1,3 +1,3 @@
-import Home from './Home';
+import CharactersFindings from './CharactersFindings';
 
-export { Home };
+export { CharactersFindings };

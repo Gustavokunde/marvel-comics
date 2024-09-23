@@ -5,8 +5,8 @@ export const addUser = async (user: User) => {
   return await api.post('/', user);
 };
 
-export const updateUser = async (id: string | null, updatedUser: User) => {
-  return await api.put(`/${id}`, updatedUser);
+export const updateUser = async (updatedUser: User) => {
+  return await api.put(`/${updatedUser.id}`, updatedUser);
 };
 
 export const getUser = async (id: string | null) => {

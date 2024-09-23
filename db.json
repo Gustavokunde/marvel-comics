@@ -1,3 +1,36 @@
 {
-    "users": []
+  "users": [
+    {
+      "id": "7bfa",
+      "name": "Gustavo Kunde Silveira",
+      "cpf": "03494491046",
+      "email": "gustavokunde@gmail.com",
+      "phone": "51982527503",
+      "address": "Estância Velha"
+    },
+    {
+      "id": "3e30",
+      "name": "Gustavo Kunde Silveira",
+      "cpf": "03494491046",
+      "email": "gustavokunde@gmail.com",
+      "phone": "51982527503",
+      "address": "Estância Velha"
+    },
+    {
+      "id": "4c0c",
+      "name": "Gustavo Kunde Silveira",
+      "cpf": "03494491046",
+      "email": "gustavokunde@gmail.com",
+      "phone": "51982527503",
+      "address": "Estância Velha"
+    },
+    {
+      "id": "2677",
+      "name": "Gustavo Kunde Silveira",
+      "cpf": "03494491046",
+      "email": "gustavokunde@gmail.com",
+      "phone": "51982527503",
+      "address": "Estância Velha"
+    }
+  ]
 }
