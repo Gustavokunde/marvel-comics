@@ -1,20 +1,27 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import {
-  useMutation,
-  UseMutationResult,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import { createContext, ReactNode, useContext, useEffect } from 'react';
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import { Character } from 'src/interfaces/character';
 import { User } from 'src/interfaces/user';
-import { addUser, deleteUser, getUser, updateUser } from '../services/users';
+import {
+  addUser,
+  deleteUser,
+  getUser,
+  updateCharactersInUser,
+  updateUser,
+} from '../services/users';
 
 type Context = {
   user: null | User;
-  isLoading: boolean;
-  isError: boolean;
-  createProfile: UseMutationResult<any, Error, User, unknown>;
-  updateProfile: UseMutationResult<any, Error, User, unknown>;
-  deleteProfile: UseMutationResult<any, Error, string, unknown>;
+  createProfile: (user: User) => Promise<void>;
+  updateProfile: (user: User) => void;
+  deleteProfile: (id: string) => void;
+  saveCharacter: (character: Character) => void;
 };
 
 const UserContext = createContext<Context | null>(null);
@@ -25,28 +32,24 @@ interface Props {
 }
 export const UserProvider = ({ children }: Props) => {
   const queryClient = useQueryClient();
+  const [user, setUser] = useState<User | null>(null);
 
-  const {
-    data: user = {},
-    isLoading,
-    isError,
-  } = useQuery({
+  useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const userId = sessionStorage.getItem('userId');
       const { data } = await getUser(userId);
+      setUser(data);
       return data;
     },
     enabled: !!sessionStorage.getItem('userId'),
   });
 
-  const addUserMutation = useMutation({
+  const { mutateAsync: addUserMutation } = useMutation({
     mutationFn: async (newUser: User) => {
       const { data } = await addUser(newUser);
+      setUser(data);
       return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['users'] });
     },
   });
 
@@ -70,23 +73,41 @@ export const UserProvider = ({ children }: Props) => {
     },
   });
 
-  useEffect(() => {
-    sessionStorage.setItem('userId', user.id);
-  }, [user.id]);
+  const saveCharacterInUserMutation = useMutation({
+    mutationFn: async (character: Character) => {
+      const userCharacters = [...(user?.characters || [])];
+      if (!user?.id) return;
+      const existentIndexCharacter = userCharacters?.findIndex(
+        ({ id }) => id == character.id
+      );
 
+      if (existentIndexCharacter !== -1 && userCharacters) {
+        userCharacters.splice(existentIndexCharacter, 1);
+      } else {
+        userCharacters?.push(character);
+      }
+
+      const { data } = await updateCharactersInUser(user.id, userCharacters);
+      setUser(data);
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+  });
   useEffect(() => {
-    sessionStorage.setItem('userId', user.id);
-  }, [user.id]);
+    if (user?.id) sessionStorage.setItem('userId', user.id);
+  }, [user?.id]);
 
   return (
     <UserContext.Provider
       value={{
         user,
-        isLoading,
-        isError,
-        createProfile: addUserMutation,
-        updateProfile: updateUserMutation,
-        deleteProfile: deleteUserMutation,
+        saveCharacter: (character: Character) =>
+          saveCharacterInUserMutation.mutate(character),
+        createProfile: (user: User) => addUserMutation(user),
+        updateProfile: (user: User) => updateUserMutation.mutate(user),
+        deleteProfile: (id: string) => deleteUserMutation.mutate(id),
       }}
     >
       {children}

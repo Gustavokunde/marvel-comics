@@ -37,7 +37,7 @@ export const CreateProfile = () => {
   }, [user]);
 
   const onSubmit = (data: User) => {
-    createProfile(data).jut;
+    createProfile(data).then(() => navigate('/characters'));
   };
 
   const handleInputFields = (name: keyof User) => {

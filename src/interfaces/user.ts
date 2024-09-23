@@ -1,3 +1,5 @@
+import { Character } from './character';
+
 export interface User {
   id: string | null;
   name: string;
@@ -5,4 +7,5 @@ export interface User {
   email: string;
   phone: string;
   address?: string;
+  characters?: Array<Character>;
 }

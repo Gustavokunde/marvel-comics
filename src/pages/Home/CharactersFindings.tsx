@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import CharacterDetailsModal from '../../components/CharacterDetails/CharacterDetails';
 import CharactersList from '../../components/CharactersList/CharactersList';
+import { useProfile } from '../../contexts/UserContext';
 import useModal from '../../hooks/modal';
 import usePagination from '../../hooks/paginations';
 import { Character } from '../../interfaces/character';
@@ -16,6 +17,7 @@ const Characters = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
   const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
+  const { saveCharacter } = useProfile();
   const { t } = useTranslation(['characters-list']);
 
   const { loading, data, pagination } = useSelector(
@@ -81,11 +83,14 @@ const Characters = () => {
     };
   };
 
+  const onFavoriteCharacter = (character: Character) => {
+    saveCharacter(character);
+  };
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 relative">
       <h1>
         Busque pelos seus personagens favoritos e salve-os clicando em cima dos
-        que preferir!
+        que desejar!
       </h1>
       <Modal />
       <section className="flex flex-wrap justify-center gap-4 rounded bg-white p-4">
@@ -97,6 +102,7 @@ const Characters = () => {
         loading={loading}
         characters={data}
         onActionClick={onCharacterDetailsClick}
+        onFavoriteCharacter={onFavoriteCharacter}
       />
       <Pagination />
     </div>
