@@ -4,8 +4,7 @@ import {
   screen,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { useEffect } from 'react';
-import useModal from './modal';
+import DefaultModal from './modal';
 
 vi.mock('@mui/icons-material/Close', () => {
   return {
@@ -17,15 +16,9 @@ vi.mock('@mui/icons-material/Close', () => {
 });
 
 const DummyComponent = () => {
-  const { openModal, closeModal, Modal } = useModal({
-    internalContent: <div data-testid="children-component" />,
-  });
-  useEffect(() => {
-    openModal();
-  }, []);
   return (
     <div>
-      <Modal />
+      <DefaultModal></DefaultModal>
       <button data-testid="close-modal" onClick={closeModal} />
     </div>
   );

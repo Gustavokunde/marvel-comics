@@ -1,11 +1,12 @@
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Button, Skeleton } from '@mui/material';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CharacterDetailsModal from '../../components/CharacterDetails/CharacterDetails';
-import useModal from '../../hooks/modal';
 import { Character } from '../../interfaces/character';
 import { colors } from '../../utils/colors';
+
+import { Favorite } from '@mui/icons-material';
+import DefaultModal from '../DefaultModal/modal';
 interface Props {
   loading?: boolean;
   characters: Character[];
@@ -18,21 +19,25 @@ const CharactersList = ({
   onFavoriteCharacter,
 }: Props) => {
   const [selectedCharacter, setSelectedItem] = useState<Character | null>(null);
-  const { t } = useTranslation(['characters-list']);
+  const { t } = useTranslation(['character-details', 'characters-list']);
 
-  const { Modal: ModalCharacterDetails, openModal } = useModal({
-    internalContent: <CharacterDetailsModal character={selectedCharacter} />,
-    title: t('title', { name: selectedCharacter?.name }),
-  });
+  const onCloseModal = () => setSelectedItem(null);
 
   const onCharacterDetailsClick = (character: Character) => {
     setSelectedItem(character);
-    openModal();
   };
 
   return (
     <>
-      {selectedCharacter && <ModalCharacterDetails />}
+      {selectedCharacter && (
+        <DefaultModal
+          isOpen={!!selectedCharacter}
+          title={t('title', { name: selectedCharacter?.name })}
+          onClose={onCloseModal}
+        >
+          <CharacterDetailsModal character={selectedCharacter} />
+        </DefaultModal>
+      )}
       <div className="flex justify-center w-full flex-wrap gap-4">
         {loading &&
           Array(3)
@@ -77,7 +82,7 @@ const CharactersList = ({
 
               {onFavoriteCharacter && (
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-500 group-hover:opacity-100">
-                  <FavoriteIcon
+                  <Favorite
                     className="text-red-500 !text-9xl cursor-pointer"
                     onClick={() => onFavoriteCharacter(character)}
                   />
@@ -89,7 +94,7 @@ const CharactersList = ({
                 data-testid="see-details"
                 onClick={() => onCharacterDetailsClick(character)}
               >
-                {t('seeDetailsButton')}
+                {t('seeDetailsButton', { ns: 'characters-list' })}
               </Button>
             </div>
           ))}

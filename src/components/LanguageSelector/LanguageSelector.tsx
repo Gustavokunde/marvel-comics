@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 const LanguageSelector = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation(['profile']);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const changeLanguage = (language: 'pt' | 'en') => {
@@ -21,7 +21,7 @@ const LanguageSelector = () => {
   };
   return (
     <section className="flex justify-end w-full p-1">
-      <Tooltip title="Alterar lingua">
+      <Tooltip title={t('languageIconTooltip')}>
         <IconButton
           onClick={openLanguageMenu}
           className="flex items-center pr-1"

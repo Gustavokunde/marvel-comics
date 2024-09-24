@@ -2,26 +2,31 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, TextField } from '@mui/material';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { useProfile } from '../../contexts/UserContext';
 import { User } from '../../interfaces/user';
 import { paths } from '../../routes';
 
-const schema = z.object({
-  name: z.string().min(1, 'Nome é obrigatório'),
-  cpf: z
-    .string()
-    .min(11, 'CPF deve conter 11 caracteres')
-    .max(11, 'CPF deve conter 11 caracteres'),
-  email: z.string().email('Email inválido').min(1, 'Email é obrigatório'),
-  phone: z.string().min(10, 'Telefone deve conter ao menos 10 dígitos'),
-  address: z.string().optional(),
-});
-
 export const CreateProfile = () => {
   const { user, createProfile } = useProfile();
   const navigate = useNavigate();
+  const { t } = useTranslation(['profile']);
+
+  const schema = z.object({
+    name: z.string().min(1, t('fields.name.requiredMessage')),
+    document: z
+      .string()
+      .min(11, t('fields.document.minRequiredMessage'))
+      .max(11, t('fields.document.maxRequiredMessage')),
+    email: z
+      .string()
+      .email(t('fields.email.invalidMessage'))
+      .min(1, t('fields.email.requiredMessage')),
+    phone: z.string().min(10, t('fields.document.minRequiredMessage')),
+    address: z.string().optional(),
+  });
 
   const {
     register,
@@ -47,28 +52,24 @@ export const CreateProfile = () => {
       error: !!errors[name],
       helperText: (errors[name]?.message || '') as string,
       InputLabelProps: { shrink: true },
+      label: t('fields.' + name + '.label'),
     };
   };
 
   return (
     <div className="w-full flex flex-col justify-center items-center">
-      <h1 className="mb-4">
-        Iremos criar um perfil para você. Por favor, insira os dados abaixo:{' '}
-      </h1>
+      <h1 className="mb-4">{t('title')}</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className=" w-1/2 flex flex-col gap-4"
       >
-        <TextField label="Nome" {...handleInputFields('name')} />
-        <TextField label="CPF" {...handleInputFields('cpf')} />
-        <TextField label="Email" {...handleInputFields('email')} />
-        <TextField label="Telefone" {...handleInputFields('phone')} />
-        <TextField
-          label="Endereço (Opcional)"
-          {...handleInputFields('address')}
-        />
+        <TextField {...handleInputFields('name')} />
+        <TextField {...handleInputFields('document')} />
+        <TextField {...handleInputFields('email')} />
+        <TextField {...handleInputFields('phone')} />
+        <TextField {...handleInputFields('address')} />
         <Button type="submit" variant="contained">
-          Cadastrar
+          {t('submitButton')}
         </Button>
       </form>
     </div>

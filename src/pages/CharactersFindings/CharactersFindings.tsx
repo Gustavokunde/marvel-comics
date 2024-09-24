@@ -98,19 +98,23 @@ const Characters = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 relative">
+      {characterIsSaved ? (
+        <div className="fixed top-0 z-10">
+          <Alert severity="success">{t('favoriteCharacterSaved')}</Alert>
+        </div>
+      ) : null}
       <h1>
-        Busque pelos seus personagens favoritos e salve-os clicando em cima dos
-        que desejar
-        {user?.characters?.length && user?.characters?.length > 0 && (
+        {t('findingCharactersTitle')}
+        {user?.characters?.length && user?.characters?.length > 0 ? (
           <>
-            <span> ou</span>
-            <Button onClick={navigateToFavorites}>Veja seus favoritos</Button>
+            <span> {t('findingCharactersTitleSequence')}</span>
+            <Button onClick={navigateToFavorites}>
+              {t('findingCharactersTitleSequenceButton')}
+            </Button>
           </>
-        )}
+        ) : null}
       </h1>
-      {characterIsSaved && (
-        <Alert severity="success">Personagem salvo com sucesso</Alert>
-      )}
+
       <section className="flex flex-wrap justify-center gap-4 rounded bg-white p-4">
         <TextField {...inputFilterProps('Name')} />
         <TextField {...inputFilterProps('Work')} />

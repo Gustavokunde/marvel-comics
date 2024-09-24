@@ -1,0 +1,24 @@
+{
+  "profileIconTooltip": "Edit profile",
+  "title": "We will create a profile for you. Please enter the details below:",
+  "fields": {
+    "name": { "label": "Name", "requiredMessage": "Name is required" },
+    "document": {
+      "label": "SSN",
+      "minRequiredMessage": "SSN must contain 11 characters",
+      "maxRequiredMessage": "SSN must contain 11 characters"
+    },
+    "email": {
+      "label": "E-mail",
+      "requiredMessage": "E-mail is required",
+      "invalidMessage": "E-mail is invalid"
+    },
+    "phone": {
+      "label": "Phone",
+      "minRequiredMessage": "Phone must contain at least 10 digits"
+    },
+    "address": { "label": "Address (optional)" }
+  },
+  "submitButton": "SEND",
+  "languageIconTooltip": "Change language"
+}
