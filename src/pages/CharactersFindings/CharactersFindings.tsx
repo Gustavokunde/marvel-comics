@@ -55,7 +55,7 @@ const CharactersFindings = () => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData, pageNumber]);
+  }, [pageNumber]);
 
   const onChangeFilter = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
