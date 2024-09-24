@@ -10,7 +10,7 @@ import { User } from '../../interfaces/user';
 import { paths } from '../../routes';
 
 export const CreateProfile = () => {
-  const { user, createProfile } = useProfile();
+  const { user, createOrUpdateProfile } = useProfile();
   const navigate = useNavigate();
   const { t } = useTranslation(['profile']);
 
@@ -43,7 +43,9 @@ export const CreateProfile = () => {
   }, [user]);
 
   const onSubmit = (data: User) => {
-    createProfile(data).then(() => navigate(paths.FIND_CHARACTERS));
+    createOrUpdateProfile({ ...user, ...data }).then(() =>
+      navigate(paths.FIND_CHARACTERS)
+    );
   };
 
   const handleInputFields = (name: keyof User) => {

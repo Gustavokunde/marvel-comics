@@ -13,12 +13,12 @@ import { paths } from '../../routes';
 import { AppDispatch, RootState } from '../../store';
 import { fetchCharactersData } from '../../store/characters/thunks/fetchCharacters';
 
-const Characters = () => {
+const CharactersFindings = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [filterBy, setFilterBy] = useState<{ name?: string; work?: string }>();
 
-  const [characterIsSaved, setCharacterIsSaved] = useState(false);
+  const [characterIsSavedInfo, setCharacterIsSavedInfo] = useState(false);
   const { user, saveCharacter } = useProfile();
   const { t } = useTranslation(['characters-list']);
 
@@ -45,17 +45,17 @@ const Characters = () => {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      setCharacterIsSaved(false);
+      setCharacterIsSavedInfo(false);
     }, 5000);
 
     return () => {
       clearTimeout(timeout);
     };
-  }, [characterIsSaved]);
+  }, [characterIsSavedInfo]);
 
   useEffect(() => {
     fetchData();
-  }, [pageNumber]);
+  }, [fetchData, pageNumber]);
 
   const onChangeFilter = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -88,8 +88,8 @@ const Characters = () => {
   };
 
   const onFavoriteCharacter = (character: Character) => {
-    setCharacterIsSaved(false);
-    saveCharacter(character).then(() => setCharacterIsSaved(true));
+    setCharacterIsSavedInfo(false);
+    saveCharacter(character).then(() => setCharacterIsSavedInfo(true));
   };
 
   const navigateToFavorites = () => {
@@ -98,7 +98,7 @@ const Characters = () => {
 
   return (
     <div className="flex flex-col items-center justify-center w-full p-4 gap-8 relative">
-      {characterIsSaved ? (
+      {characterIsSavedInfo ? (
         <div className="fixed top-0 z-10">
           <Alert severity="success">{t('favoriteCharacterSaved')}</Alert>
         </div>
@@ -130,4 +130,4 @@ const Characters = () => {
   );
 };
 
-export default Characters;
+export default CharactersFindings;

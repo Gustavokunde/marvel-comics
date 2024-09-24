@@ -18,10 +18,11 @@ import {
 
 type Context = {
   user: null | User;
-  createProfile: (user: User) => Promise<void>;
-  updateProfile: (user: User) => void;
+  createOrUpdateProfile: (user: User) => Promise<void>;
   deleteProfile: (id: string) => void;
   saveCharacter: (character: Character) => Promise<void>;
+  hasError: boolean;
+  clearHasError: () => void;
 };
 
 const UserContext = createContext<Context | null>(null);
@@ -33,7 +34,7 @@ interface Props {
 export const UserProvider = ({ children }: Props) => {
   const queryClient = useQueryClient();
   const [user, setUser] = useState<User | null>(null);
-
+  const [hasError, setHasError] = useState(false);
   useQuery({
     queryKey: ['users'],
     queryFn: async () => {
@@ -51,18 +52,28 @@ export const UserProvider = ({ children }: Props) => {
       setUser(data);
       return data;
     },
+    onError: () => {
+      setHasError(true);
+    },
   });
 
-  const { mutate: updateUserMutation } = useMutation({
+  const { mutateAsync: updateUserMutation } = useMutation({
     mutationFn: async (updatedUser: User) => {
       const { data } = await updateUser(updatedUser);
-
+      setUser(data);
       return data;
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
     },
+    onError: () => {
+      setHasError(true);
+    },
   });
+
+  const createOrUpdateProfile = (user: User) => {
+    return user.id ? updateUserMutation(user) : addUserMutation(user);
+  };
 
   const { mutate: deleteUserMutation } = useMutation({
     mutationFn: async (id: string) => {
@@ -70,6 +81,9 @@ export const UserProvider = ({ children }: Props) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
+    },
+    onError: () => {
+      setHasError(true);
     },
   });
 
@@ -94,7 +108,11 @@ export const UserProvider = ({ children }: Props) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['users'] });
     },
+    onError: () => {
+      setHasError(true);
+    },
   });
+
   useEffect(() => {
     if (user?.id) sessionStorage.setItem('userId', user.id);
   }, [user?.id]);
@@ -103,10 +121,11 @@ export const UserProvider = ({ children }: Props) => {
     <UserContext.Provider
       value={{
         user,
+        hasError,
+        clearHasError: () => setHasError(false),
         saveCharacter: (character: Character) =>
           saveCharacterInUserMutation(character),
-        createProfile: (user: User) => addUserMutation(user),
-        updateProfile: (user: User) => updateUserMutation(user),
+        createOrUpdateProfile,
         deleteProfile: (id: string) => deleteUserMutation(id),
       }}
     >

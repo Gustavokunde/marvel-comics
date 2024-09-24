@@ -1,9 +1,5 @@
 import '@testing-library/jest-dom';
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import DefaultModal from './modal';
 
 vi.mock('@mui/icons-material/Close', () => {
@@ -15,37 +11,29 @@ vi.mock('@mui/icons-material/Close', () => {
   };
 });
 
+const onClose = vitest.fn();
 const DummyComponent = () => {
   return (
     <div>
-      <DefaultModal></DefaultModal>
-      <button data-testid="close-modal" onClick={closeModal} />
+      <DefaultModal title="title" isOpen={true} onClose={onClose}>
+        <button data-testid="close-modal" />
+      </DefaultModal>
     </div>
   );
 };
 
-describe(' Testing modal hook', () => {
+describe(' Testing modal', () => {
   it('should check if modal is rendering children component', () => {
     render(<DummyComponent />);
-    const children = screen.getByTestId('children-component');
+    const children = screen.getByTestId('close-modal');
     expect(children).toBeInTheDocument();
   });
 
-  it('should check if modal is not showing children component when closed', async () => {
-    render(<DummyComponent />);
-    screen.getByTestId('close-modal').click();
-
-    await waitForElementToBeRemoved(() =>
-      screen.queryByTestId('children-component')
-    );
-  });
   it('should close modal when clicking in x icon', async () => {
     render(<DummyComponent />);
     const closeIcon = screen.getByTestId('close-icon');
     closeIcon.click();
 
-    await waitForElementToBeRemoved(() =>
-      screen.queryByTestId('children-component')
-    );
+    expect(onClose).toHaveBeenCalled();
   });
 });

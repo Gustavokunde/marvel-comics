@@ -1,8 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { act } from 'react';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from '../../contexts/UserContext';
 import { CharactersListDTO } from '../../services/characters';
 import store from '../../store';
 import * as fetchThunk from '../../store/characters/thunks/fetchCharacters';
@@ -25,11 +28,19 @@ vi.mock('@mui/icons-material/Search', () => {
 });
 
 describe('Characters tests', () => {
+  const queryClient = new QueryClient();
+
   const renderComponent = () =>
     render(
-      <Provider store={store}>
-        <CharactersList />
-      </Provider>
+      <BrowserRouter>
+        <QueryClientProvider client={queryClient}>
+          <UserProvider>
+            <Provider store={store}>
+              <CharactersList />
+            </Provider>
+          </UserProvider>
+        </QueryClientProvider>
+      </BrowserRouter>
     );
 
   it("should check if it's fetching data on first render", async () => {
@@ -82,8 +93,8 @@ describe('Characters tests', () => {
       fetchCharactersData.mockImplementationOnce(mockedFetch);
     renderComponent();
 
-    const fulterByWork = screen.getByTestId('filterbyWork');
-    fireEvent.change(fulterByWork, { target: { value: 'value' } });
+    const filterByWork = screen.getByTestId('filterbyWork');
+    fireEvent.change(filterByWork, { target: { value: 'value' } });
 
     act(() => {
       const searchIcon = screen.getAllByTestId('SearchIcon')[1];
