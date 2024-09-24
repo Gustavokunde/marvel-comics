@@ -1,7 +1,13 @@
 {
-    "loading":"We are working on bringing the characters for you...",
-    "filterByNameLabel": "Filter by name",
-    "filterByWorkLabel": "Filter by work",
-    "seeDetailsButton": "See details",
-    "chartTitle": "Comics by character in the current page"
+  "loading": "We are working on bringing the characters for you...",
+  "favoriteCharactersTitle": "Here are your favorite characters",
+  "findingCharactersTitle": "Search for your favorite characters and save them by clicking on the ones you want",
+  "findingCharactersTitleSequence": "or",
+  "findingCharactersTitleSequenceButton": "SEE YOUR FAVORITES",
+  "favoriteCharacterSaved": "Character successfully saved",
+  "filterByWorkLabel": "Filter by work",
+  "seeDetailsButton": "See details",
+  "filterByNameLabel": "Filter by name",
+  "backLink": "Back"
+
 }

@@ -1,0 +1,24 @@
+{
+  "profileIconTooltip": "Editar perfil",
+  "title": "Iremos criar um perfil para você. Por favor, insira os dados abaixo:",
+  "fields": {
+    "name": { "label": "Nome", "requiredMessage": "Nome é obrigatório" },
+    "document": {
+      "label": "CPF",
+      "minRequiredMessage": "CPF deve conter 11 caracteres",
+      "maxRequiredMessage": "CPF deve conter 11 caracteres"
+    },
+    "email": {
+      "label": "E-mail",
+      "requiredMessage": "E-mail é obrigatório",
+      "invalidMessage": "E-mail é inválido"
+    },
+    "phone": {
+      "label": "Telefone",
+      "minRequiredMessage": "Telefone deve conter ao menos 10 dígitos"
+    },
+    "address": { "label": "Endereço (opcional)" }
+  },
+  "submitButton": "ENVIAR",
+  "languageIconTooltip": "Alterar língua"
+}

@@ -4,32 +4,12 @@ import CharactersList from './CharactersList';
 
 describe('Characters List tests', () => {
   it('should show skeleton component when fetch is loading', async () => {
-    render(
-      <CharactersList loading={true} characters={[]} onActionClick={vi.fn()} />
-    );
+    render(<CharactersList loading={true} characters={[]} />);
 
     const skeletonComponents = screen.getAllByTestId('skeleton');
     expect(skeletonComponents).toHaveLength(3);
   });
-  it('should call actionClick when clicking in see details button', () => {
-    const actionClick = vi.fn();
-    const character = {
-      name: 'card name',
-      description: 'card description',
-      id: 'id',
-    };
-    render(
-      <CharactersList
-        loading={false}
-        characters={[character]}
-        onActionClick={actionClick}
-      />
-    );
 
-    screen.getByTestId('see-details').click();
-
-    expect(actionClick).toHaveBeenCalledWith(character);
-  });
   it('should show character name and image', async () => {
     render(
       <CharactersList
@@ -37,7 +17,6 @@ describe('Characters List tests', () => {
         characters={[
           { name: 'card name', description: 'card description', id: 'id' },
         ]}
-        onActionClick={vi.fn()}
       />
     );
 

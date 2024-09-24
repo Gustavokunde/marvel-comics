@@ -1,10 +1,14 @@
 # Marvel Comics
 
 ## Descrição do Projeto
-<p> Demostração disponível em: [Github pages](https://gustavokunde.github.io/marvel-comics/)
+
 <p>O projeto <strong>Marvel Comics</strong> foi desenvolvido com <strong>React</strong> e <strong>TypeScript</strong>, utilizando <strong>Vite</strong> e <strong>Nx</strong> como ferramentas de desenvolvimento. Ele lista os personagens da <a href="https://developer.marvel.com" target="_blank">API da Marvel</a>, exibindo detalhes de cada personagem através de um modal. O projeto inclui disponibilidade nos idiomas Português e Inglês.</p>
 
-<p>Os personagens são listados com paginação na página inicial, e ao clicar em um personagem, um modal exibe detalhes adicionais sobre ele.</p>
+<p>Inicialmente o usuário é direcionado a criar um perfil com dados básicos.</p>
+<p>Após, o usuário é direcionado a uma páginas em que os personagens da marvel são listados com paginação, e ao clicar em um personagem, um modal exibe detalhes adicionais sobre ele. Além disso, ele pode favoritar seus personagens favoritos que aparecerá em outra tela.</p>
+
+<p>O usuário pode optar por ver a lista dos personagens favoritas cliando em "ver favoritos" no topo.</p>
+<p>Ele também consegue editar seu perfil clicando no icone de pessoa no topo direito.</p>
 
 <p align="center">
  <a href="#status">Status</a> •
@@ -30,8 +34,7 @@
 - [x] Detalhamento de personagens em modal
 - [x] Arquitetura escalável com Nx
 - [x] Suporte a múltiplos idiomas com React i18n
-- [x] Testes unitários completos
-- [x] Integração com gráficos para visualização de dados
+- [] Testes unitários completos
 
 ### Tecnologias
 
@@ -47,6 +50,9 @@
 - [Vitest](https://vitest.dev/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
 - [Cypress](https://www.cypress.io/)
+- [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [React Query (TanStack Query)](https://tanstack.com/query/latest)
 
 ### Pré-requisitos
 
@@ -63,7 +69,15 @@ $ git clone https://github.com/gustavokunde/marvel-comics.git
 # Instale as dependências
 $ npm install
 
-# Inicie o projeto
+
+#Insira os valores em um .env seguindo o exemplo do .env.example
+
+#Para rodar o json:server inclua o arquivo db.json com {user:[]} internamente
+
+# Inicie o projeto mock
+$ npm run start:json-server
+
+# Inicie o projeto web
 $ npm run start
 ```
 

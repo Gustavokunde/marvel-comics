@@ -1,7 +1,12 @@
 {
-    "loading":"Estamos buscando os personagens para você...",
-    "filterByNameLabel": "Filtrar por nome",
-    "filterByWorkLabel": "Filtrar por obra",
-    "seeDetailsButton": "Ver detalhes",
-    "chartTitle": "Quadrinhos por personagem na página atual"
+  "loading": "Estamos buscando os personagens para você...",
+  "favoriteCharactersTitle": "Estes são os seus personagens favoritos",
+  "findingCharactersTitle": "Busque pelos seus personagens favoritos e salve-os clicando em cima dos que desejar",
+  "findingCharactersTitleSequence": "ou",
+  "findingCharactersTitleSequenceButton": "VEJA SEUS FAVORITOS",
+  "favoriteCharacterSaved": "Personagem salvo com sucesso",
+  "filterByNameLabel": "Filtrar por nome",
+  "filterByWorkLabel": "Filtrar por obra",
+  "seeDetailsButton": "Ver detalhes",
+  "backLink": "Voltar"
 }
